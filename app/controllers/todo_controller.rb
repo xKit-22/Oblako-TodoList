@@ -1,10 +1,10 @@
 class TodoController < ApplicationController
-  before_action :get_project
   def index
     @todo = Todo.all
     render json: @todo
   end
   def create
+    @project = get_project
     if @project.todos.create!(todo_params)
       render json: @todo
     else
